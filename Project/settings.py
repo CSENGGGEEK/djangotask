@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'default',
-        'USER': 'harsh010a',
+        'USER': 'root',
         'PASSWORD': 'Lpc5_]h*&Y]YBG;',
         'HOST': 'harsh010a.mysql.pythonanywhere-services.com',
         'PORT': '3306',
