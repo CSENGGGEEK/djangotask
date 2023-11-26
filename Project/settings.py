@@ -83,6 +83,9 @@ DATABASES = {
         'PASSWORD': 'Lpc5_]h*&Y]YBG;',
         'HOST': 'harsh010a.mysql.pythonanywhere-services.com',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
