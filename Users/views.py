@@ -21,7 +21,7 @@ def login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
-            username_or_email = form.cleaned_data['username_or_email']
+            username_or_email = form.cleaned_data['username']
             password = form.cleaned_data['password']
             
             # Check if the entered value is an email or username
