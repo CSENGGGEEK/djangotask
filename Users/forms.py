@@ -27,11 +27,8 @@ class CustomAuthenticationForm(AuthenticationForm):
         # Validate either username or email
         if '@' in username_or_email:
             self.cleaned_data['email'] = username_or_email
-            del cleaned_data['username']
         else:
             self.cleaned_data['username'] = username_or_email
-            del cleaned_data['email']
-
         return cleaned_data
 
     class Meta:
