@@ -22,7 +22,7 @@ def login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            username = form.cleaned_data['username_email']
             password = form.cleaned_data['password']
 
             if '@' in username and '.' in username:
