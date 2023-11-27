@@ -17,31 +17,27 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': form})
 
+# View to login
 def login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
-            username_or_email = form.cleaned_data['username']
+            username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            
-            # Check if the entered value is an email or username
-            if '@' in username_or_email:
-                # If it contains '@', consider it as an email
-                kwargs = {'email': username_or_email}
+
+            if '@' in username and '.' in username:
+                kwargs = {'email':username}
             else:
-                # Otherwise, consider it as a username
-                kwargs = {'username': username_or_email}
+                kwargs = {'username':username}
             
-            user = authenticate(request, **kwargs, password=password)
-            
+            user = authenticate(request,**kwargs, password=password)
             if user is not None:
                 auth_login(request, user)
-                return render(request=request, template_name="dashboard.html")
+                return render(request=request,template_name="dashboard.html")
     else:
         form = CustomAuthenticationForm()
 
     return render(request, 'login.html', {'form': form})
-
 
 def logout(request):
     return render(request, 'logout.html')
