@@ -22,20 +22,14 @@ def login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
-            username_or_email = form.cleaned_data['username_email']
+            username_or_email = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            if username_or_email is not None:
-                user = authenticate(request, username=username_or_email, password=password)
+            user = authenticate(request, username=username_or_email, password=password)
 
-                if user is not None:
-                    auth_login(request, user)
-                    return render(request=request,template_name="dashboard.html")
-            else:
-                user = authenticate(request, email=username_or_email, password=password)
-                if user is not None:
-                    auth_login(request, user)
-                    return render(request=request,template_name="dashboard.html")
+            if user is not None:
+                auth_login(request, user)
+                return render(request=request,template_name="dashboard.html")
     else:
         form = CustomAuthenticationForm()
 
