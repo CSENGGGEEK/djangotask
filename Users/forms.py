@@ -22,8 +22,11 @@ class CustomAuthenticationForm(AuthenticationForm):
         elif 'email' in self.fields:
             del self.fields['email']
 
-    def clean_username_email(self):
+    def clean(self):
+        cleaned_data = super().clean()
+
         username_or_email = self.cleaned_data.get('username_or_email')
+        password = cleaned_data.get('password')
         try:
             # Validate the entered value as an email
             validate_email(username_or_email)
