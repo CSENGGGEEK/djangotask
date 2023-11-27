@@ -18,7 +18,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 # View to login
-def login_view(request):
+def login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
